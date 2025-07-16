@@ -21,9 +21,9 @@
 
 @push('scripts')
     <script>
-        // Criamos uma função que retorna o objeto para o Alpine
-        function chartComponent(labels, data) {
-            return {
+        // Registra o componente globalmente no Alpine
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('chartComponent', (labels, data) => ({
                 labels: labels,
                 data: data,
                 chart: null,
@@ -60,7 +60,7 @@
                         this.chart.update();
                     });
                 }
-            }
-        }
+            }));
+        });
     </script>
 @endpush
