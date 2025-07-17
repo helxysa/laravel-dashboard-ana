@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Pessoas</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles
@@ -12,16 +13,16 @@
 
 <body class="bg-gray-100">
     <div class="min-h-screen flex">
-        <!-- Sidebar -->
         <div class="fixed left-0 top-0 w-64 h-screen bg-white shadow-lg flex flex-col z-50">
             
-            <!-- Logo/Brand -->
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
                 <div class="flex items-center space-x-3">
-                   
-                    <span class="text-xl font-bold text-gray-900">Painel Adminstrativo</span>
+                    <div>
+                        <span class="text-sm font-semibold text-gray-900 leading-tight">Ministério Público</span>
+                        <span class="block text-[10px] text-gray-600 leading-tight">do Estado do Amapá</span>
+                    </div>
+                    <img src="{{ asset('logo-mpap.png') }}" alt="Logo Ministério Público do Estado do Amapá" class="w-16 h-auto ml-4" />
                 </div>
-                
 
             </div>
 
@@ -30,22 +31,20 @@
                 <!-- Dashboard (Active) -->
                 <div class="mb-6">
                     <a href="{{ route('dashboard') }}" 
-                       class="flex items-center px-4 py-3 text-orange-600 bg-orange-50 rounded-lg {{ request()->routeIs('dashboard') ? 'bg-orange-50 text-orange-600' : 'hover:bg-gray-50' }}">
-                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l6.293 6.293a1 1 0 001.414-1.414l-7-7z"/>
-                        </svg>
+                       class="flex items-center px-3 py-2.5 text-blue-600 bg-blue-50 rounded-lg text-[15px] {{ request()->routeIs('dashboard') ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-50' }}">
+                        <span class="w-5 h-5 mr-2">@svg('carbon-dashboard')</span>
                         Dashboard
                     </a>
                 </div>
             </nav>
-
+        
             <!-- Footer -->
             <div class="p-4 border-t border-gray-200">
-                <div class="text-center">
-                    <p class="text-xs text-gray-500 mb-2">Powered by</p>
-                    <p class="text-xs font-medium text-gray-700 mb-1">DTI - DSIS</p>
-                    <p class="text-xs text-gray-500">Ministério Público</p>
-                    <p class="text-xs text-gray-500">do Estado do Amapá</p>
+                <div class="">
+                    <span class="text-gray-500 text-[12px] pl-1">
+                        Powered by 
+                        <a href="https://www.mpap.mp.br/dti" target="_blank" class="text-blue-600 hover:underline font-medium ml-1">DTI/DSIS - MPAP</a>
+                    </span>
                 </div>
             </div>
         </div>
