@@ -6,15 +6,15 @@
     <!-- inicio  -->
     <div>
         <!-- navegacao -->
-        <div class="flex">
+        <div class="flex items-end">
             <button @click="activeTab = 'visao-geral'; $nextTick(() => { if (!chartsInitialized) initCharts(); })"
                 :class="activeTab === 'visao-geral'
                     ?
                     'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10' :
                     'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
-                class="tab-button flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
-                <span class="w-4 h-4 lg:w-5 lg:h-5 flex items-center justify-center">
-                    @svg('mdi-monitor-dashboard')
+                class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
+                <span class="flex items-center justify-center mr-2">
+                    📊
                 </span>
                 Visão Geral
             </button>
@@ -24,9 +24,9 @@
                     ?
                     'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10' :
                     'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
-                class="tab-button flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
-                <span class="w-4 h-4 lg:w-5 lg:h-5 flex items-center justify-center">
-                    @svg('bi-people')
+                class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
+                <span class="flex items-center justify-center mr-2">
+                    👥
                 </span>
                 Gestão de Pessoas
             </button>
@@ -35,66 +35,99 @@
         </div>
 
         <!-- conteudo das abas -->
-        <div class="relative bg-white p-4 md:p-6 lg:p-8 rounded-b-lg rounded-tr-lg border border-gray-200 shadow-sm">
+        <div class="bg-white p-4 md:p-6 lg:p-8 rounded-b-lg rounded-tr-lg border border-gray-200 shadow-sm">
 
             <!-- visao geral -->
             <div x-show="activeTab === 'visao-geral'" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-init="if (activeTab === 'visao-geral') { $nextTick(() => { if (!chartsInitialized) initCharts(); }); }">
                 <!-- Filtros de Data -->
-                <div class="mb-6 lg:mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
-                        <!-- Filtro por Ano -->
-                        <div class="lg:col-span-1">
-                            <label for="ano" class="block text-sm font-medium text-gray-700 mb-1">Ano</label>
-                            <select id="ano" wire:model.live="anoSelecionado"
-                                class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-                                @foreach ($anosDisponiveis as $ano)
-                                    <option value="{{ $ano }}">{{ $ano }}</option>
-                                @endforeach
-                            </select>
+                <div class="mb-6 lg:mb-8 p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start lg:items-center w-full">
+                        <!-- Seleção de Ano -->
+                        <div class="flex items-center gap-3 min-w-0">
+                            <span class="text-sm font-semibold text-gray-700 whitespace-nowrap">Ano:</span>
+                            <div class="relative flex items-center group">
+                                <button onclick="scrollContainer('anos-container', -200)" 
+                                    class="absolute left-0 z-10 p-1 bg-white/80 backdrop-blur-sm rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:bg-white hover:shadow-md">
+                                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="anos-container" class="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth w-56 px-6" style="scrollbar-width: none; -ms-overflow-style: none;">
+                                    @foreach ($anosDisponiveis as $ano)
+                                        <button wire:click="$set('anoSelecionado', {{ $ano }})"
+                                            class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap
+                                                   {{ $anoSelecionado == $ano 
+                                                      ? 'bg-blue-600 text-white shadow-md' 
+                                                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                                            {{ $ano }}
+                                        </button>
+                                    @endforeach
+                                </div>
+                                <button onclick="scrollContainer('anos-container', 200)" 
+                                    class="absolute right-0 z-10 p-1 bg-white/80 backdrop-blur-sm rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:bg-white hover:shadow-md">
+                                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
 
-                        <!-- Filtro por Mês -->
-                        <div class="lg:col-span-1">
-                            <label for="mes" class="block text-sm font-medium text-gray-700 mb-1">Mês</label>
-                            <select id="mes" wire:model.live="mesSelecionado"
-                                class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-                                @foreach ($mesesDisponiveis as $num => $nome)
-                                    <option value="{{ $num }}">{{ $nome }}</option>
-                                @endforeach
-                            </select>
+                        <!-- Seleção de Mês -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-semibold text-gray-700 whitespace-nowrap">Mês:</span>
+                            <div class="relative flex items-center group">
+                                <button onclick="scrollContainer('meses-container', -200)" 
+                                    class="absolute left-0 z-10 p-1 bg-white/80 backdrop-blur-sm rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:bg-white hover:shadow-md">
+                                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="meses-container" class="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth w-128 px-6" style="scrollbar-width: none; -ms-overflow-style: none;">
+                                    @foreach ($mesesDisponiveis as $num => $nome)
+                                        <button wire:click="$set('mesSelecionado', {{ $num }})"
+                                            class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap
+                                                   {{ $mesSelecionado == $num 
+                                                      ? 'bg-blue-600 text-white shadow-md' 
+                                                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                                            {{ $nome }}
+                                        </button>
+                                    @endforeach
+                                </div>
+                                <button onclick="scrollContainer('meses-container', 200)" 
+                                    class="absolute right-0 z-10 p-1 bg-white/80 backdrop-blur-sm rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:bg-white hover:shadow-md">
+                                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Divisor -->
-                        <div class="hidden lg:flex items-center justify-center">
-                            <div class="border-l border-gray-300 h-10"></div>
-                        </div>
+                        <div class="hidden lg:block border-l border-gray-300 h-8 flex-shrink-0"></div>
 
-                        <!-- Filtro por Período -->
-                        <div class="md:col-span-2 lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
-                            <div class="sm:col-span-1">
-                                <label for="data_inicio"
-                                    class="block text-sm font-medium text-gray-700 mb-1">Início</label>
+                        <!-- Filtro por Período Personalizado -->
+                        <div class="flex items-center gap-3 flex-shrink-0">
+                            <span class="text-sm font-semibold text-gray-700 whitespace-nowrap">Período:</span>
+                            <div class="flex items-center gap-3">
                                 <input type="date" id="data_inicio" wire:model="data_inicio"
-                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-                            </div>
-                            <div class="sm:col-span-1">
-                                <label for="data_fim" class="block text-sm font-medium text-gray-700 mb-1">Fim</label>
+                                    class="px-3 py-1.5 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm w-40">
+                                <span class="text-gray-400 text-sm font-medium">até</span>
                                 <input type="date" id="data_fim" wire:model="data_fim"
-                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+                                    class="px-3 py-1.5 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm w-40">
+                                <button wire:click="aplicarFiltroPeriodo"
+                                    class="ml-2 bg-blue-600 text-white py-1.5 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-sm font-medium transition-all duration-200 whitespace-nowrap">
+                                    Aplicar
+                                </button>
                             </div>
-                            <button wire:click="aplicarFiltroPeriodo"
-                                class="sm:col-span-1 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-sm h-fit">
-                                Aplicar
-                            </button>
                         </div>
                     </div>
                 </div>
                 <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 lg:mb-6">Visão Geral</h1>
 
                 <!-- cards aq -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <!-- Card 1: Servidores Efetivos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+                    <!-- Card 1: Membros -->
                     <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="bg-emerald-100 p-2 rounded-lg">
@@ -104,29 +137,25 @@
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
                             </div>
-                            <span class="text-sm text-gray-500">Servidores Efetivos</span>
+                            <span class="text-sm text-gray-500">Membros</span>
                         </div>
-                        <div class="grid grid-cols-4 gap-4">
+                        <div class="grid grid-cols-3 gap-4">
                             <div class="text-center">
                                 <span class="text-lg font-semibold text-emerald-600">295</span>
                                 <span class="block text-sm text-gray-500">Ativos</span>
                             </div>
                             <div class="text-center">
-                                <span class="text-lg font-semibold text-amber-500">10</span>
-                                <span class="block text-sm text-gray-500">Afastados</span>
-                            </div>
-                            <div class="text-center">
-                                <span class="text-lg font-semibold text-red-500">7</span>
+                                <span class="text-lg font-semibold text-red-500">10</span>
                                 <span class="block text-sm text-gray-500">Inativos</span>
                             </div>
                             <div class="text-center">
-                                <span class="text-lg font-semibold text-emerald-600">312</span>
+                                <span class="text-lg font-semibold text-emerald-600">305</span>
                                 <span class="block text-sm text-gray-500">Total</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Card 2: Colaboradores -->
+                    <!-- Card 2: Servidores Efetivos -->
                     <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="bg-blue-100 p-2 rounded-lg">
@@ -136,25 +165,53 @@
                                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
                             </div>
-                            <span class="text-sm text-gray-500">Colaboradores</span>
+                            <span class="text-sm text-gray-500">Servidores Efetivos</span>
                         </div>
                         <div class="grid grid-cols-3 gap-4">
                             <div class="text-center">
                                 <span class="text-lg font-semibold text-blue-600">62</span>
-                                <span class="block text-sm text-gray-500">Comissionados</span>
+                                <span class="block text-sm text-gray-500">Ativos</span>
                             </div>
                             <div class="text-center">
-                                <span class="text-lg font-semibold text-indigo-600">36</span>
-                                <span class="block text-sm text-gray-500">Confiança</span>
+                                <span class="text-lg font-semibold text-red-500">10</span>
+                                <span class="block text-sm text-gray-500">Inativos</span>
                             </div>
                             <div class="text-center">
-                                <span class="text-lg font-semibold text-blue-600">98</span>
+                                <span class="text-lg font-semibold text-blue-600">72</span>
                                 <span class="block text-sm text-gray-500">Total</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Card 3: Estagiários e Terceirizados -->
+                    <!-- Card 3: Servidores Cedidos -->
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-indigo-100 p-2 rounded-lg">
+                                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                                </svg>
+                            </div>
+                            <span class="text-sm text-gray-500">Servidores Cedidos</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <span class="text-lg font-semibold text-orange-600">36</span>
+                                <span class="block text-sm text-gray-500">Pelo MP-AP</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-lg font-semibold text-green-600">98</span>
+                                <span class="block text-sm text-gray-500">Para MP-AP</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-lg font-semibold text-indigo-600">134</span>
+                                <span class="block text-sm text-gray-500">Total</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Estagiários & Terceirizados -->
                     <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="bg-purple-100 p-2 rounded-lg">
@@ -166,18 +223,22 @@
                             </div>
                             <span class="text-sm text-gray-500">Estagiários & Terceirizados</span>
                         </div>
-                        <div class="grid grid-cols-3 gap-4">
+                        <div class="grid grid-cols-4 gap-2">
                             <div class="text-center">
                                 <span class="text-lg font-semibold text-purple-600">82</span>
-                                <span class="block text-sm text-gray-500">Estagiários</span>
+                                <span class="block text-xs text-gray-500">Colaboradores</span>
                             </div>
                             <div class="text-center">
                                 <span class="text-lg font-semibold text-pink-600">42</span>
-                                <span class="block text-sm text-gray-500">Terceirizados</span>
+                                <span class="block text-xs text-gray-500">Estagiários</span>
                             </div>
                             <div class="text-center">
-                                <span class="text-lg font-semibold text-purple-600">124</span>
-                                <span class="block text-sm text-gray-500">Total</span>
+                                <span class="text-lg font-semibold text-amber-600">42</span>
+                                <span class="block text-xs text-gray-500">Pensionistas</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-lg font-semibold text-purple-600">166</span>
+                                <span class="block text-xs text-gray-500">Total</span>
                             </div>
                         </div>
                     </div>
@@ -186,32 +247,28 @@
                 <!-- graficos -->
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Distribuição por
-                            Promotorias</h3>
+                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Membros por Situação</h3>
                         <div class="h-40 lg:h-48 xl:h-52">
                             <canvas id="chart1" class="w-full h-full"></canvas>
                         </div>
                     </div>
 
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Status dos Servidores
-                        </h3>
+                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Membros por Cargo Efetivo</h3>
                         <div class="h-40 lg:h-48 xl:h-52">
                             <canvas id="chart2" class="w-full h-full"></canvas>
                         </div>
                     </div>
 
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Servidores por
-                            Promotoria</h3>
+                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Pessoas por Categoria</h3>
                         <div class="h-40 lg:h-48 xl:h-52">
                             <canvas id="chart3" class="w-full h-full"></canvas>
                         </div>
                     </div>
 
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Distribuição de
-                            Status</h3>
+                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Pessoas por Categoria (%)</h3>
                         <div class="h-40 lg:h-48 xl:h-52">
                             <canvas id="chart4" class="w-full h-full"></canvas>
                         </div>
@@ -220,8 +277,7 @@
 
                 <!-- grafico maior -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                    <h2 class="text-lg lg:text-xl font-semibold text-gray-900 mb-3 lg:mb-4">Evolução do Patrimônio de
-                        TI</h2>
+                    <h2 class="text-lg lg:text-xl font-semibold text-gray-900 mb-3 lg:mb-4">Pessoas por Cargo Efetivo</h2>
                     <div class="h-64 lg:h-80 xl:h-96">
                         <canvas id="mainChart" class="w-full h-full"></canvas>
                     </div>
@@ -477,32 +533,11 @@
             createChart('chart1', {
                 labels: ordersLabels,
                 datasets: [{
-                    label: 'Evolução por Promotoria',
+                    label: 'Membros por Situação',
                     data: ordersData,
-                    backgroundColor: 'rgba(99, 102, 241, 0.6)',
-                    borderColor: 'rgba(79, 70, 229, 1)',
-                    borderWidth: 2,
-                    tension: 0.3,
-                    pointStyle: 'circle',
-                    pointRadius: 5,
-                    pointHoverRadius: 7
-                }]
-            }, {
-                animation: {
-                    duration: 2000,
-                    easing: 'easeOutQuart'
-                }
-            }, 'line');
-
-            createChart('chart2', {
-                labels: customersLabels,
-                datasets: [{
-                    label: 'Status dos Servidores',
-                    data: customersData,
                     backgroundColor: [
-                        'rgba(16, 185, 129, 0.8)', // Verde para ativos
-                        'rgba(239, 68, 68, 0.8)', // Vermelho
-                        'rgba(156, 163, 175, 0.8)' // Cinza
+                        'rgba(16, 185, 129, 0.8)', // Verde para Ativos
+                        'rgba(239, 68, 68, 0.8)'   // Vermelho para Inativos
                     ],
                     borderColor: '#fff',
                     borderWidth: 2,
@@ -513,16 +548,68 @@
                 animation: {
                     animateRotate: true,
                     animateScale: true
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 20,
+                            padding: 15
+                        }
+                    }
                 }
             }, 'doughnut');
 
-            createChart('chart3', {
-                labels: ordersLabels,
+            createChart('chart2', {
+                labels: customersLabels,
                 datasets: [{
-                    label: 'Distribuição por Área',
-                    data: ordersData,
-                    backgroundColor: 'rgba(139, 92, 246, 0.8)',
-                    borderColor: 'rgba(124, 58, 237, 1)',
+                    label: 'Membros por Cargo Efetivo',
+                    data: customersData,
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.8)', // Azul para PROCURADOR
+                        'rgba(16, 185, 129, 0.8)'  // Verde para PROMOTOR
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 3,
+                    hoverOffset: 20
+                }]
+            }, {
+                animation: {
+                    animateRotate: true,
+                    animateScale: true
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 20,
+                            padding: 15
+                        }
+                    }
+                }
+            }, 'pie');
+
+            createChart('chart3', {
+                labels: ['Membros', 'Servidores', 'Cedidos', 'Colaboradores', 'Estagiários'],
+                datasets: [{
+                    label: 'Pessoas por Categoria',
+                    data: [305, 72, 134, 82, 42], // Dados dos cards: Membros=305, Servidores=72, Cedidos=134, Colaboradores=82, Estagiários=42
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.8)', // Verde para Membros
+                        'rgba(59, 130, 246, 0.8)', // Azul para Servidores
+                        'rgba(99, 102, 241, 0.8)', // Indigo para Cedidos
+                        'rgba(139, 92, 246, 0.8)', // Roxo para Colaboradores
+                        'rgba(236, 72, 153, 0.8)'  // Rosa para Estagiários
+                    ],
+                    borderColor: [
+                        'rgba(5, 150, 105, 1)',
+                        'rgba(29, 78, 216, 1)',
+                        'rgba(67, 56, 202, 1)',
+                        'rgba(124, 58, 237, 1)',
+                        'rgba(190, 24, 93, 1)'
+                    ],
                     borderWidth: 1,
                     borderRadius: 4
                 }]
@@ -543,16 +630,16 @@
             }, 'bar');
 
             createChart('chart4', {
-                labels: ['Ativos', 'Inativos', 'Manutenção'],
+                labels: ['Membros', 'Servidores', 'Cedidos', 'Colaboradores', 'Estagiários'],
                 datasets: [{
-                    label: 'Status',
-                    data: [@json($metricas['ativos']), @json($metricas['inativos']),
-                        @json($metricas['em_manutencao'])
-                    ],
+                    label: 'Pessoas por Categoria (%)',
+                    data: [48.1, 11.4, 21.1, 12.9, 6.6], // Percentuais baseados no total: 305+72+134+82+42 = 635
                     backgroundColor: [
-                        'rgba(59, 130, 246, 0.9)',
-                        'rgba(239, 68, 68, 0.9)',
-                        'rgba(156, 163, 175, 0.9)'
+                        'rgba(16, 185, 129, 0.9)', // Verde para Membros
+                        'rgba(59, 130, 246, 0.9)', // Azul para Servidores
+                        'rgba(99, 102, 241, 0.9)', // Indigo para Cedidos
+                        'rgba(139, 92, 246, 0.9)', // Roxo para Colaboradores
+                        'rgba(236, 72, 153, 0.9)'  // Rosa para Estagiários
                     ],
                     borderColor: '#fff',
                     borderWidth: 3,
@@ -586,15 +673,15 @@
                     },
                     title: {
                         display: true,
-                        text: 'Evolução do Patrimônio de TI' // Título descritivo
+                        text: 'Pessoas por Cargo Efetivo'
                     },
                     tooltip: {
                         callbacks: {
                             title: function(context) {
-                                return 'Detalhes do Servidor';
+                                return 'Detalhes por Cargo';
                             },
                             label: function(context) {
-                                return 'Quantidade: ' + context.raw;
+                                return context.dataset.label + ': ' + context.raw + ' pessoas';
                             }
                         }
                     },
@@ -603,13 +690,13 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Quantidade de Servidores'
+                                text: 'Quantidade de Pessoas'
                             }
                         },
                         x: {
                             title: {
                                 display: true,
-                                text: 'Promotorias'
+                                text: 'Período'
                             }
                         }
                     }
@@ -625,8 +712,65 @@
             initCharts();
         }
     });
+
+    // Função para scroll horizontal dos containers
+    function scrollContainer(containerId, scrollAmount) {
+        const container = document.getElementById(containerId);
+        if (container) {
+            container.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    }
 </script>
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@endpush
+
+@push('styles')
+<style>
+    /* Esconder scrollbar nos containers */
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Smooth scroll para os containers */
+    #anos-container, #meses-container {
+        scroll-behavior: smooth;
+    }
+    
+    /* Gradiente sutil nas bordas dos containers */
+    .group:hover #anos-container::before,
+    .group:hover #meses-container::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 20px;
+        background: linear-gradient(to right, rgba(255,255,255,0.8), transparent);
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    .group:hover #anos-container::after,
+    .group:hover #meses-container::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 20px;
+        background: linear-gradient(to left, rgba(255,255,255,0.8), transparent);
+        pointer-events: none;
+        z-index: 1;
+    }
+</style>
 @endpush
