@@ -2,7 +2,7 @@
 
 use App\Livewire\Pessoas;
 use App\Livewire\VisaoGeral;
-use App\Livewire\Contracheque;
+use App\Livewire\ContraCheque;
 use App\Livewire\Servidores;
 use App\Livewire\Membros;
 use App\Livewire\Colaboradores;
@@ -15,8 +15,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/pessoas', Pessoas::class)->name('pessoas');
-Route::get('/contra-cheque', Contracheque::class)->name('contra-cheque');
-Route::get('/visao-geral', Pessoas::class)->name('visao-geral');
+Route::get('/contra-cheque', ContraCheque::class)->name('contra-cheque');
+Route::get('/visao-geral', VisaoGeral::class)->name('visao-geral');
 Route::get('/servidores', Servidores::class)->name('servidores');
 Route::get('/membros', Membros::class)->name('membros');
 Route::get('/colaboradores', Colaboradores::class)->name('colaboradores');
