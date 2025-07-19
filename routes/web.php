@@ -1,15 +1,22 @@
 <?php
 
-use App\Livewire\Dashboard;
+use App\Livewire\Pessoas;
 use App\Livewire\VisaoGeral;
 use App\Livewire\Contracheque;
+use App\Livewire\Servidores;
+use App\Livewire\Membros;
+use App\Livewire\Colaboradores;
+
 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('components.layouts.app');
+    return redirect()->route('pessoas');
 })->name('home');
 
-Route::get('/dashboard', Dashboard::class)->name('dashboard');
+Route::get('/pessoas', Pessoas::class)->name('pessoas');
 Route::get('/contra-cheque', Contracheque::class)->name('contra-cheque');
-Route::get('/visao-geral', Dashboard::class)->name('visao-geral');
+Route::get('/visao-geral', Pessoas::class)->name('visao-geral');
+Route::get('/servidores', Servidores::class)->name('servidores');
+Route::get('/membros', Membros::class)->name('membros');
+Route::get('/colaboradores', Colaboradores::class)->name('colaboradores');

@@ -1,17 +1,12 @@
-<div class="space-y-6 lg:space-y-8" x-data="{
-    activeTab: 'visao-geral',
-    chartsInitialized: false,
-    charts: {}
-}">
+<div class="space-y-6 lg:space-y-8" x-data="{ activeTab: 'visao-geral' }">
     <!-- inicio  -->
     <div>
         <!-- navegacao -->
         <div class="flex items-end">
-            <button @click="activeTab = 'visao-geral'; $nextTick(() => { if (!chartsInitialized) initCharts(); })"
+            <button @click="activeTab = 'visao-geral'"
                 :class="activeTab === 'visao-geral'
-                    ?
-                    'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10' :
-                    'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
+                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
                     📊
@@ -19,11 +14,32 @@
                 Visão Geral
             </button>
 
+            <button @click="activeTab = 'membros'"
+                :class="activeTab === 'membros'
+                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
+                class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
+                <span class="flex items-center justify-center mr-2">
+                    👨‍⚖️
+                </span>
+                Membros
+            </button>
+
+            <button @click="activeTab = 'servidores'"
+                :class="activeTab === 'servidores'
+                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
+                class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
+                <span class="flex items-center justify-center mr-2">
+                    👨‍💼
+                </span>
+                Servidores
+            </button>
+
             <button @click="activeTab = 'gestao-pessoas'"
                 :class="activeTab === 'gestao-pessoas'
-                    ?
-                    'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10' :
-                    'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
+                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
                     👥
@@ -39,7 +55,7 @@
 
             <!-- visao geral -->
             <div x-show="activeTab === 'visao-geral'" x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-init="if (activeTab === 'visao-geral') { $nextTick(() => { if (!chartsInitialized) initCharts(); }); }">
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
                 <!-- Filtros de Data -->
                 <div class="mb-6 lg:mb-8 p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
                     <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start lg:items-center w-full">
@@ -126,9 +142,9 @@
                 <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 lg:mb-6">Visão Geral</h1>
 
                 <!-- cards aq -->
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8" wire:key="cards-container">
                     <!-- Card 1: Membros -->
-                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm" wire:key="card-membros">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="bg-emerald-100 p-2 rounded-lg">
                                 <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor"
@@ -156,7 +172,7 @@
                     </div>
 
                     <!-- Card 2: Servidores Efetivos -->
-                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm" wire:key="card-servidores">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="bg-blue-100 p-2 rounded-lg">
                                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor"
@@ -184,7 +200,7 @@
                     </div>
 
                     <!-- Card 3: Servidores Cedidos -->
-                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm" wire:key="card-cedidos">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="bg-indigo-100 p-2 rounded-lg">
                                 <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor"
@@ -212,7 +228,7 @@
                     </div>
 
                     <!-- Card 4: Estagiários & Terceirizados -->
-                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm" wire:key="card-estagiarios">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="bg-purple-100 p-2 rounded-lg">
                                 <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor"
@@ -244,44 +260,138 @@
                     </div>
                 </div>
 
-                <!-- graficos -->
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Membros por Situação</h3>
-                        <div class="h-40 lg:h-48 xl:h-52">
-                            <canvas id="chart1" class="w-full h-full"></canvas>
-                        </div>
-                    </div>
+                <!-- graficos gerais -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6 mb-6 lg:mb-8" wire:key="charts-container">
+                    <x-charts.simple
+                        id="chart1"
+                        type="doughnut"
+                        title="Distribuição Geral por Categoria"
+                        :data="[
+                            'labels' => ['Membros', 'Servidores', 'Cedidos', 'Colaboradores', 'Estagiários'],
+                            'datasets' => [[
+                                'label' => 'Distribuição Geral',
+                                'data' => [305, 72, 134, 82, 42],
+                                'backgroundColor' => [
+                                    'rgba(16, 185, 129, 0.8)',
+                                    'rgba(59, 130, 246, 0.8)',
+                                    'rgba(99, 102, 241, 0.8)',
+                                    'rgba(139, 92, 246, 0.8)',
+                                    'rgba(236, 72, 153, 0.8)'
+                                ],
+                                'borderColor' => '#fff',
+                                'borderWidth' => 2,
+                                'cutout' => '70%'
+                            ]]
+                        ]"
+                        :height="'h-40 lg:h-48 xl:h-52'"
+                    />
 
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Membros por Cargo Efetivo</h3>
-                        <div class="h-40 lg:h-48 xl:h-52">
-                            <canvas id="chart2" class="w-full h-full"></canvas>
-                        </div>
-                    </div>
+                    <x-charts.simple
+                        id="chart2"
+                        type="bar"
+                        title="Crescimento Anual"
+                        :data="[
+                            'labels' => ['2020', '2021', '2022', '2023', '2024'],
+                            'datasets' => [[
+                                'label' => 'Total de Pessoas',
+                                'data' => [580, 595, 610, 625, 635],
+                                'backgroundColor' => 'rgba(59, 130, 246, 0.7)',
+                                'borderColor' => 'rgba(59, 130, 246, 1)',
+                                'borderWidth' => 1,
+                                'borderRadius' => 4
+                            ]]
+                        ]"
+                        :height="'h-40 lg:h-48 xl:h-52'"
+                    />
 
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Pessoas por Categoria</h3>
-                        <div class="h-40 lg:h-48 xl:h-52">
-                            <canvas id="chart3" class="w-full h-full"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                        <h3 class="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Pessoas por Categoria (%)</h3>
-                        <div class="h-40 lg:h-48 xl:h-52">
-                            <canvas id="chart4" class="w-full h-full"></canvas>
-                        </div>
-                    </div>
+                    <x-charts.simple
+                        id="chart3"
+                        type="pie"
+                        title="Status Geral"
+                        :data="[
+                            'labels' => ['Ativos', 'Inativos', 'Licença', 'Aposentados'],
+                            'datasets' => [[
+                                'label' => 'Status',
+                                'data' => [595, 25, 10, 5],
+                                'backgroundColor' => [
+                                    'rgba(16, 185, 129, 0.8)',
+                                    'rgba(239, 68, 68, 0.8)',
+                                    'rgba(245, 158, 11, 0.8)',
+                                    'rgba(107, 114, 128, 0.8)'
+                                ],
+                                'borderColor' => '#fff',
+                                'borderWidth' => 3,
+                                'hoverOffset' => 20
+                            ]]
+                        ]"
+                        :height="'h-40 lg:h-48 xl:h-52'"
+                    />
                 </div>
 
                 <!-- grafico maior -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-                    <h2 class="text-lg lg:text-xl font-semibold text-gray-900 mb-3 lg:mb-4">Pessoas por Cargo Efetivo</h2>
-                    <div class="h-64 lg:h-80 xl:h-96">
-                        <canvas id="mainChart" class="w-full h-full"></canvas>
-                    </div>
-                </div>
+                <x-charts.simple
+                    id="mainChart"
+                    type="line"
+                    title="Evolução Geral por Categoria"
+                    :data="[
+                        'labels' => ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                        'datasets' => [
+                            [
+                                'label' => 'Membros',
+                                'data' => [300, 302, 305, 305, 305, 305],
+                                'backgroundColor' => 'rgba(16, 185, 129, 0.1)',
+                                'borderColor' => 'rgba(16, 185, 129, 1)',
+                                'borderWidth' => 3,
+                                'tension' => 0.4
+                            ],
+                            [
+                                'label' => 'Servidores',
+                                'data' => [70, 71, 72, 72, 72, 72],
+                                'backgroundColor' => 'rgba(59, 130, 246, 0.1)',
+                                'borderColor' => 'rgba(59, 130, 246, 1)',
+                                'borderWidth' => 3,
+                                'tension' => 0.4
+                            ],
+                            [
+                                'label' => 'Cedidos',
+                                'data' => [130, 132, 134, 134, 134, 134],
+                                'backgroundColor' => 'rgba(99, 102, 241, 0.1)',
+                                'borderColor' => 'rgba(99, 102, 241, 1)',
+                                'borderWidth' => 3,
+                                'tension' => 0.4
+                            ],
+                            [
+                                'label' => 'Colaboradores',
+                                'data' => [80, 81, 82, 82, 82, 82],
+                                'backgroundColor' => 'rgba(139, 92, 246, 0.1)',
+                                'borderColor' => 'rgba(139, 92, 246, 1)',
+                                'borderWidth' => 3,
+                                'tension' => 0.4
+                            ],
+                            [
+                                'label' => 'Estagiários',
+                                'data' => [40, 41, 42, 42, 42, 42],
+                                'backgroundColor' => 'rgba(236, 72, 153, 0.1)',
+                                'borderColor' => 'rgba(236, 72, 153, 1)',
+                                'borderWidth' => 3,
+                                'tension' => 0.4
+                            ]
+                        ]
+                    ]"
+                    :height="'h-64 lg:h-80 xl:h-96'"
+                />
+            </div>
+
+            <!-- membros -->
+            <div x-show="activeTab === 'membros'" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                @livewire('membros')
+            </div>
+
+            <!-- servidores -->
+            <div x-show="activeTab === 'servidores'" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                @livewire('servidores')
             </div>
 
             <!-- gestao de pessoas -->
@@ -459,260 +569,6 @@
 </div>
 
 <script>
-    function initCharts() {
-        setTimeout(() => {
-            // dados vindo do livewire (verificar se tem uma forma melhor de fazer isso dps)
-            const ordersLabels = @json($ordersLabels);
-            const ordersData = @json($ordersData);
-            const customersLabels = @json($customersLabels);
-            const customersData = @json($customersData);
-            const chartData = @json($chartData);
-
-            // funcao pra criar o chart
-            function createChart(canvasId, data, options = {}, type = 'bar') {
-                try {
-                    const canvas = document.getElementById(canvasId);
-                    if (!canvas) return null;
-
-                    const ctx = canvas.getContext('2d');
-                    if (!ctx) return null;
-
-                    const existingChart = Chart.getChart(canvasId);
-                    if (existingChart) existingChart.destroy();
-
-                    const defaultOptions = {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                display: false
-                            }
-                        }
-                    };
-
-                    if (type === 'pie' || type === 'doughnut') {
-                        defaultOptions.scales = {};
-                        defaultOptions.plugins.legend = {
-                            display: true,
-                            position: 'bottom'
-                        };
-                    }
-
-                    if (type === 'line') {
-                        defaultOptions.elements = {
-                            line: {
-                                tension: 0.4,
-                                borderWidth: 2
-                            },
-                            point: {
-                                radius: 3,
-                                hoverRadius: 5
-                            }
-                        };
-                    }
-
-                    return new Chart(ctx, {
-                        type: type,
-                        data: data,
-                        options: {
-                            ...defaultOptions,
-                            ...options
-                        }
-                    });
-                } catch (error) {
-                    console.error('Erro ao criar gráfico:', error);
-                    return null;
-                }
-            }
-
-            createChart('chart1', {
-                labels: ordersLabels,
-                datasets: [{
-                    label: 'Membros por Situação',
-                    data: ordersData,
-                    backgroundColor: [
-                        'rgba(16, 185, 129, 0.8)', // Verde para Ativos
-                        'rgba(239, 68, 68, 0.8)'   // Vermelho para Inativos
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 2,
-                    cutout: '70%',
-                    radius: '90%'
-                }]
-            }, {
-                animation: {
-                    animateRotate: true,
-                    animateScale: true
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 20,
-                            padding: 15
-                        }
-                    }
-                }
-            }, 'doughnut');
-
-            createChart('chart2', {
-                labels: customersLabels,
-                datasets: [{
-                    label: 'Membros por Cargo Efetivo',
-                    data: customersData,
-                    backgroundColor: [
-                        'rgba(59, 130, 246, 0.8)', // Azul para PROCURADOR
-                        'rgba(16, 185, 129, 0.8)'  // Verde para PROMOTOR
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 3,
-                    hoverOffset: 20
-                }]
-            }, {
-                animation: {
-                    animateRotate: true,
-                    animateScale: true
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 20,
-                            padding: 15
-                        }
-                    }
-                }
-            }, 'pie');
-
-            createChart('chart3', {
-                labels: ['Membros', 'Servidores', 'Cedidos', 'Colaboradores', 'Estagiários'],
-                datasets: [{
-                    label: 'Pessoas por Categoria',
-                    data: [305, 72, 134, 82, 42], // Dados dos cards: Membros=305, Servidores=72, Cedidos=134, Colaboradores=82, Estagiários=42
-                    backgroundColor: [
-                        'rgba(16, 185, 129, 0.8)', // Verde para Membros
-                        'rgba(59, 130, 246, 0.8)', // Azul para Servidores
-                        'rgba(99, 102, 241, 0.8)', // Indigo para Cedidos
-                        'rgba(139, 92, 246, 0.8)', // Roxo para Colaboradores
-                        'rgba(236, 72, 153, 0.8)'  // Rosa para Estagiários
-                    ],
-                    borderColor: [
-                        'rgba(5, 150, 105, 1)',
-                        'rgba(29, 78, 216, 1)',
-                        'rgba(67, 56, 202, 1)',
-                        'rgba(124, 58, 237, 1)',
-                        'rgba(190, 24, 93, 1)'
-                    ],
-                    borderWidth: 1,
-                    borderRadius: 4
-                }]
-            }, {
-                indexAxis: 'y',
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        grid: {
-                            color: 'rgba(0,0,0,0.05)'
-                        }
-                    }
-                }
-            }, 'bar');
-
-            createChart('chart4', {
-                labels: ['Membros', 'Servidores', 'Cedidos', 'Colaboradores', 'Estagiários'],
-                datasets: [{
-                    label: 'Pessoas por Categoria (%)',
-                    data: [48.1, 11.4, 21.1, 12.9, 6.6], // Percentuais baseados no total: 305+72+134+82+42 = 635
-                    backgroundColor: [
-                        'rgba(16, 185, 129, 0.9)', // Verde para Membros
-                        'rgba(59, 130, 246, 0.9)', // Azul para Servidores
-                        'rgba(99, 102, 241, 0.9)', // Indigo para Cedidos
-                        'rgba(139, 92, 246, 0.9)', // Roxo para Colaboradores
-                        'rgba(236, 72, 153, 0.9)'  // Rosa para Estagiários
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 3,
-                    hoverOffset: 20
-                }]
-            }, {
-                animation: {
-                    animateRotate: true,
-                    animateScale: true
-                },
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            boxWidth: 20,
-                            padding: 15
-                        }
-                    }
-                }
-            }, 'pie');
-
-            createChart('mainChart', chartData, {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: {
-                            usePointStyle: true,
-                            pointStyle: 'rectRounded'
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Pessoas por Cargo Efetivo'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: function(context) {
-                                return 'Detalhes por Cargo';
-                            },
-                            label: function(context) {
-                                return context.dataset.label + ': ' + context.raw + ' pessoas';
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Quantidade de Pessoas'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Período'
-                            }
-                        }
-                    }
-                }
-            });
-
-            window.chartsInitialized = true;
-        }, 500);
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        if (!window.chartsInitialized) {
-            initCharts();
-        }
-    });
-
     // Função para scroll horizontal dos containers
     function scrollContainer(containerId, scrollAmount) {
         const container = document.getElementById(containerId);
@@ -725,9 +581,6 @@
     }
 </script>
 
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-@endpush
 
 @push('styles')
 <style>

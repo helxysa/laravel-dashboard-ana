@@ -20,6 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Livewire::component('dashboard', \App\Livewire\Dashboard::class);
+        Livewire::component('pessoas', \App\Livewire\Pessoas::class);
     }
 }

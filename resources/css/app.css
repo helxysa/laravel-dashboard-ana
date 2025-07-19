@@ -9,3 +9,40 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Configurações personalizadas do Dashboard MPAP */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Transições suaves para SPA */
+[wire\:navigate] {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Loading states */
+.wire-loading {
+    opacity: 0.6;
+    transition: opacity 0.15s ease-in-out;
+}
+
+/* Progress bar personalizada */
+.livewire-progress-bar {
+    height: 2px;
+    background-color: #3b82f6;
+    border-radius: 1px;
+}
+
+/* Estilos para charts */
+.chart-container {
+    position: relative;
+}
+
+.chart-container canvas {
+    max-height: 400px;
+}

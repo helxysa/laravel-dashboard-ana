@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Carbon\Carbon;
 use Livewire\Component;
 
-class Dashboard extends Component
+class Pessoas extends Component
 {
     public array $metricas = [];
     public array $ordersData = [];
@@ -19,7 +19,6 @@ class Dashboard extends Component
     public $mesSelecionado;
     public array $mesesSelecionados = [];
     public $anosDisponiveis = [2021, 2022, 2023, 2024, 2025];
-
     public $mesesDisponiveis = [
         1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril',
         5 => 'Maio', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto',
@@ -185,6 +184,6 @@ class Dashboard extends Component
         // if (empty($this->customersData)) $this->customersData = [];
         // if (empty($this->chartData)) $this->chartData = [];
 
-        return view('livewire.dashboard')->layout('components.layouts.app');
+        return view('livewire.pessoas')->layout('components.layouts.app');
     }
 }

@@ -1,5 +1,12 @@
-console.log("Teste de Sanidade: O arquivo app.js foi carregado!");
+console.log("Dashboard MPAP: Assets locais carregados!");
 
 import './bootstrap';
+
+// Chart.js
 import Chart from 'chart.js/auto';
 window.Chart = Chart;
+
+// Configuração do Chart.js para tema do dashboard
+Chart.defaults.color = '#64748b';
+Chart.defaults.borderColor = '#e2e8f0';
+Chart.defaults.backgroundColor = 'rgba(59, 130, 246, 0.1)';

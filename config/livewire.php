@@ -132,7 +132,7 @@ return [
      */
     'navigate' => [
         'show_progress_bar' => true,
-        'progress_bar_color' => '#2299dd',
+        'progress_bar_color' => '#3b82f6',
     ],
 
     /*
@@ -146,6 +146,20 @@ return [
      * |
      */
     'inject_morph_markers' => true,
+    
+    /*
+     * |---------------------------------------------------------------------------
+     * | Morphing Otimizado
+     * |---------------------------------------------------------------------------
+     * |
+     * | Configurações adicionais para morphing otimizado no dashboard
+     * |
+     */
+    'morph' => [
+        'morph_markers' => true,
+        'update_uri' => true,
+        'update_title' => true,
+    ],
 
     /*
      * |---------------------------------------------------------------------------

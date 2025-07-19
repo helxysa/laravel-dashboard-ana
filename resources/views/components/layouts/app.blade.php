@@ -5,21 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    {{-- O título da página agora pode ser definido pelo componente que está sendo renderizado --}}
+    {{-- Meta tags para SPA otimizado --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex, nofollow">
+    
     <title>{{ $title ?? 'Gestão de Pessoas - MPAP' }}</title>
     
     {{-- <link rel="icon" type="image/png" href="favicon.png"> --}}
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- AlpineJS -->
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <!-- Estilos do Livewire -->
     @livewireStyles
     
-    <!-- Permite que componentes filhos enviem seus próprios estilos para o head -->
     @stack('styles')
 </head>
 
@@ -50,25 +47,32 @@
                     Isso verifica se o nome da rota atual corresponde ao link.
                     É a forma padrão e mais confiável no Laravel.
                 --}}
-                <a href="{{ route('visao-geral') }}" 
+                <a href="{{ route('visao-geral') }}" wire:navigate
                    class="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 mb-2
                           {{ request()->routeIs('visao-geral') ? 'text-white bg-blue-600 shadow-sm' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                     Visão Geral
                 </a>
 
-                <a href="dashboard" {{-- href="{{ route('pessoas') }}" --}}
+                <a href="<?php echo e(route('pessoas')); ?>" wire:navigate
                    class="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 mb-2
-                          {{ request()->routeIs('dashboard') ? 'text-white bg-blue-600 shadow-sm' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}">
+                          {{ request()->routeIs('pessoas') ? 'text-white bg-blue-600 shadow-sm' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     Pessoas
                 </a>
 
-                <a href="contra-cheque" {{-- href="{{ route('contracheque') }}" --}}
+                <a href="{{ route('contra-cheque') }}" wire:navigate
                    class="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 mb-2
                           {{ request()->routeIs('contracheque') ? 'text-white bg-blue-600 shadow-sm' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     Contracheque
+                </a>
+
+                <a href="{{ route('colaboradores') }}" wire:navigate
+                   class="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 mb-2
+                          {{ request()->routeIs('colaboradores') ? 'text-white bg-blue-600 shadow-sm' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    Colaboradores
                 </a>
             </nav>
 
@@ -91,10 +95,12 @@
                     <h1 class="text-xl font-semibold text-gray-800">
                         @if(request()->routeIs('visao-geral'))
                             Visão Geral
-                        @elseif(request()->routeIs('dashboard'))
+                        @elseif(request()->routeIs('pessoas'))
                             Gestão de Pessoas
                         @elseif(request()->routeIs('contra-cheque'))
                             Contracheque
+                        @elseif(request()->routeIs('colaboradores'))
+                            Análise de Colaboradores
                         @endif
                     </h1>
 
@@ -116,7 +122,7 @@
                 {{-- 
                   Este é o ponto mais importante.
                   O Livewire irá injetar o conteúdo do seu componente de página 
-                  (no seu caso, o `dashboard.blade.php`) aqui.
+                  (no seu caso, o `pessoas.blade.php`) aqui.
                 --}}
                 {{ $slot }}
             </main>
