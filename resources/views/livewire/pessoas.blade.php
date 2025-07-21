@@ -5,7 +5,7 @@
         <div class="flex items-end">
             <button @click="activeTab = 'visao-geral'"
                 :class="activeTab === 'visao-geral'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
@@ -51,7 +51,7 @@
         </div>
 
         <!-- conteudo das abas -->
-        <div class="bg-white p-4 md:p-6 lg:p-8 rounded-b-lg rounded-tr-lg border border-gray-200 shadow-sm">
+        <div class="bg-gray-100 p-4 md:p-6 lg:p-8 rounded-b-lg rounded-tr-lg border border-gray-300 shadow-sm">
 
             <!-- visao geral -->
             <div x-show="activeTab === 'visao-geral'" x-transition:enter="transition ease-out duration-300"
