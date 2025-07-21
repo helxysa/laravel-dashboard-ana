@@ -99,7 +99,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                                     </svg>
                                 </button>
-                                <div id="meses-container" class="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth w-128 px-6" style="scrollbar-width: none; -ms-overflow-style: none;">
+                                <div id="meses-container" class="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth w-[700px] max-w-full px-6" style="scrollbar-width: none; -ms-overflow-style: none;">
                                     @foreach ($mesesDisponiveis as $num => $nome)
                                         <button wire:click="$set('mesSelecionado', {{ $num }})"
                                             class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap
@@ -124,15 +124,14 @@
 
                         <!-- Filtro por Período Personalizado -->
                         <div class="flex items-center gap-3 flex-shrink-0">
-                            <span class="text-sm font-semibold text-gray-700 whitespace-nowrap">Período:</span>
-                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-3">
                                 <input type="date" id="data_inicio" wire:model="data_inicio"
-                                    class="px-3 py-1.5 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm w-40">
-                                <span class="text-gray-400 text-sm font-medium">até</span>
+                                    class="px-1 py-0.5 rounded border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-[11px] w-20 h-7">
+                                <span class="text-gray-400 text-[11px] font-medium">até</span>
                                 <input type="date" id="data_fim" wire:model="data_fim"
-                                    class="px-3 py-1.5 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm w-40">
+                                    class="px-1 py-0.5 rounded border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-[11px] w-20 h-7">
                                 <button wire:click="aplicarFiltroPeriodo"
-                                    class="ml-2 bg-blue-600 text-white py-1.5 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-sm font-medium transition-all duration-200 whitespace-nowrap">
+                                    class="ml-1 bg-blue-600 text-white py-0.5 px-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-[11px] font-medium transition-all duration-200 whitespace-nowrap h-7">
                                     Aplicar
                                 </button>
                             </div>
