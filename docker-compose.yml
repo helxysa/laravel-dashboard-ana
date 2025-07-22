@@ -45,7 +45,7 @@ services:
     networks:
       - laravel
 
-# Define a rede para os contêineres se comunicarem
+# Define a rede para oQs contêineres se comunicarem
 networks:
   laravel:
     driver: bridge
