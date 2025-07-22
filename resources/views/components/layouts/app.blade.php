@@ -119,11 +119,6 @@
 
             <!-- Conteúdo da Página -->
             <main class="flex-1 p-6 bg-gray-50">
-                {{-- 
-                  Este é o ponto mais importante.
-                  O Livewire irá injetar o conteúdo do seu componente de página 
-                  (no seu caso, o `pessoas.blade.php`) aqui.
-                --}}
                 {{ $slot }}
             </main>
         </div>

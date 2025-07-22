@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\GestaoPessoas;
 
 use Carbon\Carbon;
 use Livewire\Component;
@@ -184,6 +184,6 @@ class Pessoas extends Component
         // if (empty($this->customersData)) $this->customersData = [];
         // if (empty($this->chartData)) $this->chartData = [];
 
-        return view('livewire.pessoas')->layout('components.layouts.app');
+        return view('livewire.gestao-pessoas.pessoas')->layout('components.layouts.app');
     }
 }
