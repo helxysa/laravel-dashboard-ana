@@ -8,8 +8,15 @@
                     ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
-                <x-iconpark-home />
-
+                <span class="flex items-center justify-center">
+                    <!-- SVG clean e relacionado a visão geral (dashboard/overview) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <rect x="3" y="3" width="7" height="7" rx="2" stroke-width="1.5"/>
+                        <rect x="14" y="3" width="7" height="7" rx="2" stroke-width="1.5"/>
+                        <rect x="14" y="14" width="7" height="7" rx="2" stroke-width="1.5"/>
+                        <rect x="3" y="14" width="7" height="7" rx="2" stroke-width="1.5"/>
+                    </svg>
+                </span>
                 Visão Geral
             </button>
 
@@ -19,7 +26,11 @@
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    👨‍⚖️
+                    <!-- SVG alternativo menor: user outline -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                        <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                        <path d="M3 17c0-3 3.5-5 7-5s7 2 7 5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                    </svg>
                 </span>
                 Membros Ativos
             </button>
@@ -30,7 +41,13 @@
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    👨‍💼
+                    <!-- SVG alternativo menor: user outline com X -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                        <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                        <path d="M3 17c0-3 3.5-5 7-5s7 2 7 5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                        <line x1="14.5" y1="3.5" x2="17.5" y2="6.5" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="17.5" y1="3.5" x2="14.5" y2="6.5" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
                 </span>
                 Membros Inativos
             </button>
@@ -41,33 +58,44 @@
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    👨‍💼
+                    <!-- SVG alternativo menor: badge/check -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                        <circle cx="10" cy="10" r="8" stroke="#22c55e" stroke-width="1.2" fill="none"/>
+                        <path d="M7 10.5l2 2 4-4" stroke="#22c55e" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </span>
                 Servidores Ativos
             </button>
 
-            
             <button @click="activeTab = 'servidores-inativos'"
                 :class="activeTab === 'servidores-inativos'
                     ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    👨‍💼
+                    <!-- SVG alternativo menor: badge com X -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                        <circle cx="10" cy="10" r="8" stroke="#ef4444" stroke-width="1.2" fill="none"/>
+                        <line x1="7" y1="7" x2="13" y2="13" stroke="#ef4444" stroke-width="1.4" stroke-linecap="round"/>
+                        <line x1="13" y1="7" x2="7" y2="13" stroke="#ef4444" stroke-width="1.4" stroke-linecap="round"/>
+                    </svg>
                 </span>
                 Servidores Inativos
             </button>
 
-            
             <button @click="activeTab = 'estagiarios'"
                 :class="activeTab === 'estagiarios'
                     ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    👨‍💼
+                    <!-- SVG alternativo menor: chapéu de formatura simples -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                        <polygon points="10,4 18,8 10,12 2,8 10,4" fill="#3b82f6" stroke="#2563eb" stroke-width="1"/>
+                        <rect x="8.5" y="12" width="3" height="1.2" rx="0.6" fill="#2563eb"/>
+                    </svg>
                 </span>
-                Estágiarios
+                Estagiários
             </button>
 
             <button @click="activeTab = 'pensionista'"
@@ -76,7 +104,12 @@
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    👨‍💼
+                    <!-- SVG alternativo menor: bengala simples -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                        <rect x="12" y="8" width="1" height="7" rx="0.5" fill="#a3a3a3"/>
+                        <circle cx="12.5" cy="16" r="0.7" fill="#a3a3a3"/>
+                        <circle cx="12.5" cy="7" r="1.2" stroke="#a3a3a3" stroke-width="1" fill="none"/>
+                    </svg>
                 </span>
                 Pensionista
             </button>
@@ -87,7 +120,12 @@
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    👥
+                    <!-- SVG alternativo menor: duas pessoas outline -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                        <circle cx="7" cy="8" r="2" stroke="#2563eb" stroke-width="1" fill="none"/>
+                        <circle cx="13" cy="8" r="2" stroke="#2563eb" stroke-width="1" fill="none"/>
+                        <path d="M4 16c0-2 2-4 6-4s6 2 6 4" stroke="#2563eb" stroke-width="1" fill="none"/>
+                    </svg>
                 </span>
                 Cedidos
             </button>
@@ -98,7 +136,13 @@
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    👥
+                    <!-- SVG alternativo menor: três pessoas outline -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                        <circle cx="10" cy="7" r="2" stroke="#2563eb" stroke-width="1" fill="none"/>
+                        <circle cx="6" cy="10" r="1.2" stroke="#2563eb" stroke-width="1" fill="none"/>
+                        <circle cx="14" cy="10" r="1.2" stroke="#2563eb" stroke-width="1" fill="none"/>
+                        <path d="M3 17c0-2 2.5-4 7-4s7 2 7 4" stroke="#2563eb" stroke-width="1" fill="none"/>
+                    </svg>
                 </span>
                 Colaboradores
             </button>
