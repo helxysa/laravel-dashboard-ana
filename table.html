@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Membros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <!-- Filtros -->
+            <div class="p-4 border-b border-gray-100">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <!-- Filtro por Cargo -->
+                    <div class="flex-1">
+                        <label class="block text-xs font-medium text-gray-500 mb-1">Cargo Efetivo</label>
+                        <div class="relative">
+                            <select class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-100 focus:border-blue-500 appearance-none">
+                                <option value="">Todos os cargos</option>
+                                <option>Analista</option>
+                                <option>Gerente</option>
+                                <option>Diretor</option>
+                                <option>Coordenador</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtro por Lotação -->
+                    <div class="flex-1">
+                        <label class="block text-xs font-medium text-gray-500 mb-1">Lotação</label>
+                        <div class="relative">
+                            <select class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-100 focus:border-blue-500 appearance-none">
+                                <option value="">Todas as lotações</option>
+                                <option>RH</option>
+                                <option>Financeiro</option>
+                                <option>TI</option>
+                                <option>Marketing</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtro por Tempo de Atuação -->
+                    <div class="flex-1">
+                        <label class="block text-xs font-medium text-gray-500 mb-1">Tempo de Atuação</label>
+                        <div class="relative">
+                            <select class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-100 focus:border-blue-500 appearance-none">
+                                <option value="">Todos os períodos</option>
+                                <option>Menos de 1 ano</option>
+                                <option>1-3 anos</option>
+                                <option>3-5 anos</option>
+                                <option>Mais de 5 anos</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botão de Aplicar Filtros -->
+                    <div class="flex items-end">
+                        <button class="h-[38px] px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition flex items-center gap-2">
+                            <i class="fas fa-filter text-xs"></i>
+                            Filtrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabela -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cargo Efetivo</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Função</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lotação</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ato/Portaria Nº</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data publicação</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Atuação</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Linha 1 -->
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">1</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">João Silva</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Analista</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Desenvolvedor</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TI</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1234/2023</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15/01/2023</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Ativo</span>
+                            </td>
+                        </tr>
+                        
+                        <!-- Linha 2 -->
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">2</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Maria Souza</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Gerente</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Gestão de Projetos</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TI</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5678/2022</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">20/05/2022</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Ativo</span>
+                            </td>
+                        </tr>
+                        
+                        <!-- Linha 3 -->
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">3</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Carlos Oliveira</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Diretor</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Direção Executiva</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Administração</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">9012/2021</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10/03/2021</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Ativo</span>
+                            </td>
+                        </tr>
+                        
+                        <!-- Linha 4 -->
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">4</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Ana Santos</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Coordenador</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Coordenação de RH</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">RH</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3456/2022</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">05/08/2022</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Afastado</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Paginação -->
+            <div class="px-4 py-3 flex flex-col md:flex-row justify-between items-center border-t border-gray-200 bg-gray-50">
+                <div class="text-sm text-gray-500 mb-2 md:mb-0">
+                    Exibindo <span class="font-medium">1</span> - <span class="font-medium">4</span> de <span class="font-medium">10</span> membros
+                </div>
+                
+                <div class="flex gap-2">
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 flex items-center gap-1 disabled:opacity-50" disabled>
+                        <i class="fas fa-chevron-left text-xs"></i>
+                        Anterior
+                    </button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 flex items-center gap-1">
+                        Próxima
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

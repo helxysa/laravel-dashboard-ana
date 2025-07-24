@@ -22,7 +22,7 @@
 
             <button @click="activeTab = 'membros'"
                 :class="activeTab === 'membros'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
@@ -37,11 +37,10 @@
 
             <button @click="activeTab = 'membros-inativos'"
                 :class="activeTab === 'membros-inativos'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
-                    <!-- SVG alternativo menor: user outline com X -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
                         <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/>
                         <path d="M3 17c0-3 3.5-5 7-5s7 2 7 5" stroke="currentColor" stroke-width="1.2" fill="none"/>
@@ -54,7 +53,7 @@
 
             <button @click="activeTab = 'servidores'"
                 :class="activeTab === 'servidores'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
@@ -69,7 +68,7 @@
 
             <button @click="activeTab = 'servidores-inativos'"
                 :class="activeTab === 'servidores-inativos'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
@@ -85,7 +84,7 @@
 
             <button @click="activeTab = 'estagiarios'"
                 :class="activeTab === 'estagiarios'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
@@ -100,7 +99,7 @@
 
             <button @click="activeTab = 'pensionista'"
                 :class="activeTab === 'pensionista'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
@@ -116,7 +115,7 @@
 
             <button @click="activeTab = 'colaboradores'"
                 :class="activeTab === 'colaboradores'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
@@ -132,7 +131,7 @@
 
             <button @click="activeTab = 'cedidos'"
                 :class="activeTab === 'cedidos'
-                    ? 'text-blue-600 bg-white rounded-t-lg border-l border-t border-r border-gray-200 -mb-px relative z-10'
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg border-l border-t border-r border-gray-300 -mb-px relative z-10'
                     : 'text-gray-500 hover:text-blue-600 border-b border-gray-200'"
                 class="flex items-center gap-2 py-2 px-4 lg:py-3 lg:px-5 font-semibold transition-all duration-200 text-sm lg:text-base whitespace-nowrap">
                 <span class="flex items-center justify-center mr-2">
@@ -159,7 +158,7 @@
                 <!-- Filtros de Data -->
                 <div class="mb-6 lg:mb-8 p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
                     <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start lg:items-center w-full">
-                        <!-- Seleção de Ano -->
+                            <!-- Seleção de Ano -->
                         <div class="flex items-center gap-3 min-w-0">
                             <span class="text-sm font-semibold text-gray-700 whitespace-nowrap">Ano:</span>
                             <div class="relative flex items-center group">

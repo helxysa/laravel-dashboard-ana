@@ -1,15 +1,12 @@
 {{-- servidores.blade.php --}}
-<div class="p-6 space-y-6">
+<div
+    class="p-6 spcae-y-6">
+
     <div class="flex justify-between items-center">
-        <h1 class="text-xl font-bold text-gray-800">Análise de Servidores</h1>
-        
-        <!-- Botão de teste para verificar atualização -->
-        <button 
-            onclick="testChartUpdate()"
-            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
-            🔄 Testar Atualização
-        </button>
+        <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 lg:mb-6">Servidores Ativos</h1>
     </div>
+    
+
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <x-charts.simple
